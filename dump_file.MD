@@ -1,4 +1,6 @@
 # Dump all notes or bits here
+
+
 Its sort of a filtered version of our sketch file:
 https://docs.google.com/document/d/1B9IwwWGrIxScWaakNaTiNLVlafGndmDw6KI9xmf0Zrc/edit?usp=sharing
 (team access only)
