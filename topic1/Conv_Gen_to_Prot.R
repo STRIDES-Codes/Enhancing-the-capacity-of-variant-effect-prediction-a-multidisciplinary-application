@@ -46,6 +46,12 @@ gnm_prt
 # Try the strand thing
 # We could define the gene start and end (even the user could)
 
+# This is what we would want in the end: 
+# OUTPUT: acsv/tsv file 
+# AA_ID	chr	AA	start	 end
+#     1	6	  R	  12321	 12323
+#     2	6	  H	  12324	 12326
+#
 gnmTest <- GRanges("X", IRanges(start = c(153759606),width = c(15863)))
 
 gnm_prtTEST <- genomeToProtein(gnmTest, edbx)
