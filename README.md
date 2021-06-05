@@ -2,7 +2,11 @@
 
 
 ##  SWAAT - Structural Workflow for Annotating ADME Targets
-This work is to update and upgrade SWAAT. SWAAT is a workflow that uses structural properties of missense variants to predict the likely outcome (deleterious, benign). There are three main areas to be addressed.
+This work is to update and upgrade SWAAT. SWAAT is a workflow that uses structural properties of missense variants to predict the likely outcome (deleterious, benign). ADME genes are those involved in key facets of drug metabolism. Variants in these genes may result in adverse reactions, which may be related to drug safety or efficacy. Classifying variants in terms of protein impact (Deleterious, Neutral, Benign) could be used to help prevent adverse reactions or assist in drug safety protocols.
+
+
+Regarding upgrading - there are three main areas to be addressed.
+
 
 ## TASK 1 - Replace the Transvar based mapping of protein and genomic coordinates part of the workflow
 
@@ -43,3 +47,10 @@ VCF input > treatment at the back-end (SWAAT) > report (rendered)/raw data cvs/t
 A basic HTML/CSS code for the user interface (front end) has been built. 
 Back end, deploying a Flask app to handle input and run SWAAT.
 
+
+## Contributors
+Houcem Othman
+Isabel Mensah
+Tsaone Tamuhla
+Yagoub Adam
+Jorge da rocha 
