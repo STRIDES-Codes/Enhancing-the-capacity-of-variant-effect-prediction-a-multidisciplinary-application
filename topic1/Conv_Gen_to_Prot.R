@@ -1,6 +1,8 @@
 ## Install the necessary packages and libraries into R
 ## This requires R version >  3.5.0 
 ## Could be cleaned up later into a conda env etc
+## this version of bionconductor wants R > v4.1
+## If you have it, skip it 
 
 #Install the latest bioconductor
 if (!requireNamespace("BiocManager", quietly = TRUE))
