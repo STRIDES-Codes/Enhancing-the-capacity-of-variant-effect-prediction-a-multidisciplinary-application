@@ -21,7 +21,9 @@ AA_ID	chr	AA	start	end
 2	    6	  H	  12324	12326
 
 ### Progress  5 June
-Trying out EnsemblDB in R
+Succeeded in using ensemblDB to retrieve genomic coordinates for AA positions!!
+
+Next steps - we can retrieve the seq - we can use this to create a table of position and AA which can match to the coords retrieved
 
 ## TASK 2 - Assess additional machine learning methods for SWAATS's classification functions
 ### Problem
@@ -50,7 +52,11 @@ Back end, deploying a Flask app to handle input and run SWAAT.
 
 ## Contributors
 Houcem Othman
+
 Isabel Mensah
+
 Tsaone Tamuhla
+
 Yagoub Adam
+
 Jorge da rocha 
