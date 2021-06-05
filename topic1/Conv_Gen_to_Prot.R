@@ -43,10 +43,7 @@ gnm_prt
 
 #Where the magic happens
 # 
-#This was a trial to get the g6pd genes protein coordinates
-# https://grch37.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000160211;r=X:153759606-153775787
-# Try the strand thing
-# We could define the gene start and end (even the user could)
+
 
 # This is what we would want in the end: 
 # OUTPUT: acsv/tsv file 
@@ -54,29 +51,28 @@ gnm_prt
 #     1	6	  R	  12321	 12323
 #     2	6	  H	  12324	 12326
 #
-gnmTest <- GRanges("X", IRanges(start = c(153759606),width = c(15863)))
+# With ENSP ID! Matching uniprot! (we had to check this based on uniprot P10635)
+# CYP2D6 - ENSP00000351927 
+#summon the db
+library(EnsDb.Hsapiens.v86)
+edb <- EnsDb.Hsapiens.v86
 
-gnm_prtTEST <- genomeToProtein(gnmTest, edbx)
+#Split the DB to the chr of interest (22 for CYP2D6)
+edx22 <- filter(EnsDb.Hsapiens.v86, filter = ~ seq_name == "22")
 
-#Trying stuff
-#  X: 153759606-153775469 
-gnm <- GRanges("X:107716399-107716401")
-library(Gviz)
-## Since we're using Ensembl chromosome names we have to set:
-options(ucscChromosomeNames = FALSE)
+# Select the AA (we need to loop this for each AA, could tie to seq retrieval and conversion!)
+CYP2D6_protein <- IRanges(start = 1, end = 1, names = "ENSP00000351927")
 
-## Define a genome axis track
-gat <- GenomeAxisTrack(range = gnm)
+#Convert to genomic coordinates
+CYP2D6_gnm <- proteinToGenome(CYP2D6_protein, edx22)
+#to look at all what was retrieved
+CYP2D6_gnm
 
-## Get all genes in that region
-gnm_gns <- getGeneRegionTrackForGviz(edbx, filter = GRangesFilter(gnm))
-gtx <- GeneRegionTrack(gnm_gns, name = "tx", geneSymbol = TRUE,
-                       showId = TRUE)
+#This is the string to see your coords
+CYP2D6_gnm[["ENSP00000351927"]]@ranges
 
-## Generate a higlight track
-ht <- HighlightTrack(trackList = list(gat, gtx), range = gnm)
-## plot the region
-plotTracks(list(ht))
+#Sequence retrieval
+prts <- proteins(edb, filter = ProteinIdFilter("ENSP00000351927") ,return.type = "AAStringSet")
 
-gnm_prt_WG <- genomeToProtein(gnm, edbx)
-
+# The AA seq is there but we havent found a way to pull it out, its "seq"
+prts
