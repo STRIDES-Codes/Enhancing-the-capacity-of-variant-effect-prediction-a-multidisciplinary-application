@@ -76,3 +76,63 @@ prts <- proteins(edb, filter = ProteinIdFilter("ENSP00000351927") ,return.type =
 
 # The AA seq is there but we havent found a way to pull it out, its "seq"
 prts
+
+
+#Try return type to dataframe, set the output to df
+prtsdf <- proteins(edb, filter = ProteinIdFilter("ENSP00000351927") ,return.type = "DataFrame")
+prtsdf$protein_sequence
+
+prtsdf@listData[["protein_sequence"]]
+
+# extract sequence
+sequence <- prtsdf@listData[["protein_sequence"]]
+sequence
+# create a list of the AAs
+unlist <- unlist(strsplit(sequence, split = ""))
+#turn that list into a dataframe
+AA_sequence <- as.data.frame(unlist)
+AA_sequence
+
+
+#Add name to AA col
+colnames(AA_sequence) <- "RefAminoAcid"
+#Add ID based on order to df
+AA_sequence$ID <- seq.int(nrow(AA_sequence))
+AA_sequence
+
+
+# Loop for looping through AA coords - 
+# Loop is to be replaced with length of AA_sequence (corr to protein length) 
+# We need to extract and merge the start end from search_HITS[["ENSP00000351927"]]@ranges
+# And add those to the AA_sequence 
+coordsDF <- NULL;
+for (val in c(1:446)){
+  search_AA <- IRanges(start = val, end = val, names = "ENSP00000351927")
+  search_HITS <- proteinToGenome(search_AA, edx22)
+  strenddf <- as.data.frame(search_HITS[["ENSP00000351927"]]@ranges)
+  coordsDF <- rbind(coordsDF, strenddf)
+  
+  #print(val)
+}
+coordsDF
+#copy the DF
+coordtomerge <- coordsDF
+# Add the interval 
+coordtomerge$ID <- seq.int(nrow(coordtomerge))
+coordtomerge
+
+#Create the penultimate table by merging
+final <- inner_join(AA_sequence, coordtomerge)
+final 
+# TO DO - reduce harding of chromosome (and add chr to final)
+# change the end of loop to length of AA_sequence
+# END step Variabilify the tool to take an ENSP ID as input. 
+# That can be used to retrieve chr, which can split the edb, and make things faster. 
+
+#Add the CHR to final 
+final$CHR <- 22
+
+#reorder the file drop width
+finalfinal <- final[,c("ID", "RefAminoAcid","CHR","start","end")]
+# write out to csv
+write.csv(finalfinal, "query_output.csv", row.names = FALSE,)
