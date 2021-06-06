@@ -16,6 +16,7 @@ Task -
 Match the amino acids in a sequence of a human protein to their genome coordinates. 
 
 We needed an output that looks like this:
+
 AA_ID	chr	AA	start	end
 
 1	    6	  R 	12321	12323
