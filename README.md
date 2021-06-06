@@ -22,7 +22,7 @@ AA_ID	chr	AA	start	end
 
 2	    6	  H	  12324	12326
 
-Codeathon Results
+### Codeathon Results
 Given a ensembl proteinID, we have developed an[ R script ](https://github.com/STRIDES-Codes/Enhancing-the-capacity-of-variant-effect-prediction-a-multidisciplinary-application/blob/main/topic1/Conv_Gen_to_Prot.R)to retrieve the amino acid sequence of that protein, convert that to a dataframe and add the numerical sequence. With this sequence, we can query for the genomic coordinate (GRch38) and add it to that dataframe, and output a csv file. 
 
 Workflow of the process:
@@ -68,7 +68,7 @@ Generate a basic version of a web app.
 VCF input > treatment at the back-end (SWAAT) > report (rendered)/raw data cvs/tsv 
 
 ### Progress 5 June
-A basic HTML/CSS code for the user interface (front end) has been built. 
+A basic HTML/CSS code for the user interface (front end) has been [built](https://github.com/STRIDES-Codes/Enhancing-the-capacity-of-variant-effect-prediction-a-multidisciplinary-application/tree/main/topic3). 
 Back end, deploying a Flask app to handle input and run SWAAT.
 
 ![flowRoot1336](https://user-images.githubusercontent.com/20955296/120924904-f0792a80-c6cd-11eb-8642-adf7f7d08764.png)
